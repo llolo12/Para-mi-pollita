@@ -3,8 +3,9 @@
 <head>
 <meta charset="UTF-8">
 
-<!-- 🚫 EVITA ZOOM EN CELULAR -->
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<!-- 🚫 BLOQUEO TOTAL DE ZOOM -->
+<meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <title>Para Ti ❤️</title>
 
@@ -14,56 +15,65 @@
     -webkit-tap-highlight-color: transparent;
 }
 
-body {
+html, body {
     margin: 0;
-    height: 100vh;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    touch-action: manipulation;
+    font-family: Arial, sans-serif;
+}
+
+body {
     background: linear-gradient(#ffd6e8, #ffeef5);
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
-    padding-top: 40px;
-    overflow: hidden;
-    font-family: Arial, sans-serif;
-    touch-action: manipulation; /* 🚫 zoom */
+    padding-top: 35px;
 }
 
-/* 📱 TEXTO */
+/* 💬 TEXTO SUPERIOR */
 h1 {
     color: #b0004b;
-    margin-bottom: 25px;
     font-size: 20px;
+    margin-bottom: 20px;
     text-align: center;
 }
 
-/* ❤️ CORAZÓN (MÁS PEQUEÑO) */
+/* ❤️ CORAZÓN (TAMAÑO AJUSTADO) */
 #corazon {
     position: relative;
-    width: 90px;
-    height: 90px;
+    width: 85px;
+    height: 85px;
     background: #ff3366;
     transform: rotate(-45deg);
     animation: latido 1.2s infinite;
     cursor: pointer;
+
+    /* 🚫 ZOOM DEFINITIVO */
+    touch-action: none;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
 }
 
 #corazon::before,
 #corazon::after {
     content: "";
     position: absolute;
-    width: 90px;
-    height: 90px;
+    width: 85px;
+    height: 85px;
     background: #ff3366;
     border-radius: 50%;
 }
 
 #corazon::before {
-    top: -45px;
+    top: -42px;
     left: 0;
 }
 
 #corazon::after {
-    left: 45px;
+    left: 42px;
     top: 0;
 }
 
@@ -72,10 +82,10 @@ h1 {
     50% { transform: rotate(-45deg) scale(1.15); }
 }
 
-/* 🌧️ CAÍDA DESDE ARRIBA */
+/* 🌧️ ELEMENTOS QUE CAEN (DESDE ARRIBA) */
 .caer {
     position: absolute;
-    top: -80px;
+    top: -100px;
     animation: caer 8s linear forwards;
     pointer-events: none;
 }
@@ -87,19 +97,21 @@ h1 {
     }
 }
 
+/* 📸 FOTOS */
 .foto {
     width: 70px;
     border-radius: 12px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.25);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.25);
 }
 
+/* 📝 TEXTOS */
 .texto {
     background: rgba(255,255,255,0.95);
     padding: 8px 14px;
     border-radius: 20px;
     color: #b0004b;
-    font-weight: bold;
     font-size: 14px;
+    font-weight: bold;
     white-space: nowrap;
 }
 </style>
@@ -111,12 +123,22 @@ h1 {
 <div id="corazon"></div>
 
 <script>
+/* 📸 IMÁGENES */
 const fotos = [
-    "fotos/1.jpg",
-    "fotos/2.jpg",
-    "fotos/3.jpg"
+    "Imagenes/1.jpeg",
+    "Imagenes/2.jpeg",
+    "Imagenes/3.jpeg",
+    "Imagenes/4.jpeg",
+    "Imagenes/5.jpeg",
+    "Imagenes/6.jpeg",
+    "Imagenes/7.jpeg",
+    "Imagenes/8.jpeg",
+    "Imagenes/9.jpeg",
+    "Imagenes/10.jpeg",
+    "Imagenes/11.jpeg"
 ];
 
+/* 💬 MENSAJES */
 const mensajes = [
     "Te amo mucho ❤️",
     "Danna mi amor 💕",
@@ -125,23 +147,26 @@ const mensajes = [
     "Mi lirio 🌸"
 ];
 
-/* 🌧️ LLUVIA CONSTANTE (SPAM SEGUIDO, CAÍDA LENTA) */
+/* 🌧️ LLUVIA CONSTANTE (SPAM SEGUIDO + CAÍDA LENTA) */
 setInterval(() => {
     crearCorazon();
-    if (Math.random() > 0.4) crearFoto();
-    if (Math.random() > 0.5) crearTexto();
-}, 500);
+    if (Math.random() > 0.35) crearFoto();
+    if (Math.random() > 0.45) crearTexto();
+}, 450);
 
-/* ❤️ TOQUE SIN ZOOM */
+/* ❤️ TOQUE SIN ZOOM (CLAVE FINAL) */
 const corazon = document.getElementById("corazon");
-corazon.addEventListener("touchstart", e => {
+
+corazon.addEventListener("pointerdown", (e) => {
     e.preventDefault();
+    e.stopPropagation();
+
     for (let i = 0; i < 4; i++) crearCorazon();
     for (let i = 0; i < 2; i++) crearFoto();
     crearTexto();
 });
 
-/* 💖 */
+/* 💖 CORAZONES */
 function crearCorazon() {
     const c = document.createElement("div");
     c.className = "caer";
@@ -152,7 +177,7 @@ function crearCorazon() {
     setTimeout(() => c.remove(), 8000);
 }
 
-/* 📸 */
+/* 📸 FOTO */
 function crearFoto() {
     const f = document.createElement("img");
     f.src = fotos[Math.floor(Math.random()*fotos.length)];
@@ -162,7 +187,7 @@ function crearFoto() {
     setTimeout(() => f.remove(), 8000);
 }
 
-/* 📝 */
+/* 📝 TEXTO */
 function crearTexto() {
     const t = document.createElement("div");
     t.className = "caer texto";
