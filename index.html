@@ -2,9 +2,18 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
+
+<!-- 🚫 EVITA ZOOM EN CELULAR -->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
 <title>Para Ti ❤️</title>
 
 <style>
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
 body {
     margin: 0;
     height: 100vh;
@@ -13,28 +22,25 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    padding-top: 60px;
+    padding-top: 40px;
     overflow: hidden;
     font-family: Arial, sans-serif;
+    touch-action: manipulation; /* 🚫 zoom */
 }
 
-/* ✨ TEXTO */
+/* 📱 TEXTO */
 h1 {
     color: #b0004b;
-    margin-bottom: 50px;
-    animation: brillo 2s infinite alternate;
+    margin-bottom: 25px;
+    font-size: 20px;
+    text-align: center;
 }
 
-@keyframes brillo {
-    from { opacity: 0.7; }
-    to { opacity: 1; }
-}
-
-/* ❤️ CORAZÓN */
+/* ❤️ CORAZÓN (MÁS PEQUEÑO) */
 #corazon {
     position: relative;
-    width: 120px;
-    height: 120px;
+    width: 90px;
+    height: 90px;
     background: #ff3366;
     transform: rotate(-45deg);
     animation: latido 1.2s infinite;
@@ -45,32 +51,32 @@ h1 {
 #corazon::after {
     content: "";
     position: absolute;
-    width: 120px;
-    height: 120px;
+    width: 90px;
+    height: 90px;
     background: #ff3366;
     border-radius: 50%;
 }
 
 #corazon::before {
-    top: -60px;
+    top: -45px;
     left: 0;
 }
 
 #corazon::after {
-    left: 60px;
+    left: 45px;
     top: 0;
 }
 
 @keyframes latido {
     0%,100% { transform: rotate(-45deg) scale(1); }
-    50% { transform: rotate(-45deg) scale(1.1); }
+    50% { transform: rotate(-45deg) scale(1.15); }
 }
 
-/* 🌧️ CAÍDA LENTA */
+/* 🌧️ CAÍDA DESDE ARRIBA */
 .caer {
     position: absolute;
-    top: -60px;
-    animation: caer 7s linear forwards; /* ⬅️ LENTO */
+    top: -80px;
+    animation: caer 8s linear forwards;
     pointer-events: none;
 }
 
@@ -81,20 +87,8 @@ h1 {
     }
 }
 
-/* 💖 corazones giran suave */
-.corazon-caer {
-    animation: caer-giro 7s linear forwards;
-}
-
-@keyframes caer-giro {
-    to {
-        transform: translateY(120vh) rotate(360deg);
-        opacity: 0;
-    }
-}
-
 .foto {
-    width: 80px;
+    width: 70px;
     border-radius: 12px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.25);
 }
@@ -106,6 +100,7 @@ h1 {
     color: #b0004b;
     font-weight: bold;
     font-size: 14px;
+    white-space: nowrap;
 }
 </style>
 </head>
@@ -117,17 +112,9 @@ h1 {
 
 <script>
 const fotos = [
-   "Imagenes/1.jpeg",
-    "Imagenes/2.jpeg",
-    "Imagenes/3.jpeg",
-     "Imagenes/4.jpeg",
-    "Imagenes/5.jpeg",
-    "Imagenes/6.jpeg",
-     "Imagenes/7.jpeg",
-    "Imagenes/8.jpeg",
-    "Imagenes/9.jpeg" ,
-    "Imagenes/10.jpeg",
-    "Imagenes/11.jpeg",
+    "fotos/1.jpg",
+    "fotos/2.jpg",
+    "fotos/3.jpg"
 ];
 
 const mensajes = [
@@ -138,51 +125,54 @@ const mensajes = [
     "Mi lirio 🌸"
 ];
 
-/* 🌧️ LLUVIA CONSTANTE (SPAM SUAVE) */
+/* 🌧️ LLUVIA CONSTANTE (SPAM SEGUIDO, CAÍDA LENTA) */
 setInterval(() => {
-    crearCorazon();           // siempre hay algo
+    crearCorazon();
     if (Math.random() > 0.4) crearFoto();
     if (Math.random() > 0.5) crearTexto();
-}, 600);  // ⬅️ seguido pero no exagerado
+}, 500);
 
-/* ❤️ EXTRA al tocar */
-document.getElementById("corazon").addEventListener("click", () => {
-    for (let i = 0; i < 5; i++) crearCorazon();
+/* ❤️ TOQUE SIN ZOOM */
+const corazon = document.getElementById("corazon");
+corazon.addEventListener("touchstart", e => {
+    e.preventDefault();
+    for (let i = 0; i < 4; i++) crearCorazon();
     for (let i = 0; i < 2; i++) crearFoto();
     crearTexto();
 });
 
-/* 💖 corazones */
+/* 💖 */
 function crearCorazon() {
     const c = document.createElement("div");
-    c.classList.add("caer", "corazon-caer");
-    c.innerHTML = ["❤️","💖","💕","💗"][Math.floor(Math.random()*4)];
+    c.className = "caer";
+    c.innerText = ["❤️","💖","💕","💗"][Math.floor(Math.random()*4)];
     c.style.left = Math.random() * window.innerWidth + "px";
     c.style.fontSize = "26px";
     document.body.appendChild(c);
-    setTimeout(() => c.remove(), 7000);
+    setTimeout(() => c.remove(), 8000);
 }
 
-/* 📸 fotos */
+/* 📸 */
 function crearFoto() {
     const f = document.createElement("img");
     f.src = fotos[Math.floor(Math.random()*fotos.length)];
-    f.classList.add("caer", "foto");
+    f.className = "caer foto";
     f.style.left = Math.random() * window.innerWidth + "px";
     document.body.appendChild(f);
-    setTimeout(() => f.remove(), 7000);
+    setTimeout(() => f.remove(), 8000);
 }
 
-/* 📝 textos */
+/* 📝 */
 function crearTexto() {
     const t = document.createElement("div");
-    t.classList.add("caer", "texto");
+    t.className = "caer texto";
     t.innerText = mensajes[Math.floor(Math.random()*mensajes.length)];
     t.style.left = Math.random() * window.innerWidth + "px";
     document.body.appendChild(t);
-    setTimeout(() => t.remove(), 7000);
+    setTimeout(() => t.remove(), 8000);
 }
 </script>
 
 </body>
 </html>
+
