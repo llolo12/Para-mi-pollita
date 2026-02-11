@@ -1,6 +1,10 @@
 const corazon = document.getElementById("corazon");
+const gifAmor = document.getElementById("gifAmor");
 
-/* ===== IMÁGENES ===== */
+/* GIF DE TENOR */
+const gifURL = "https://media.tenor.com/9x7aSM2Vn7gAAAAC/love-mm.gif";
+
+/* IMÁGENES */
 const fotos = [
   "Imagenes/1.jpeg",
   "Imagenes/2.jpeg",
@@ -23,27 +27,23 @@ const mensajes = [
   "Mi lirio 🌸"
 ];
 
-/* ===== CLICK CORAZÓN ===== */
+/* CLICK EN CORAZÓN */
 corazon.addEventListener("click", () => {
 
-  for (let i = 0; i < 6; i++) {
-    setTimeout(crearCorazon, i * 200);
-  }
+  gifAmor.src = gifURL;
+  gifAmor.style.display = "block";
 
-  for (let i = 0; i < 3; i++) {
-    setTimeout(crearTexto, i * 400);
-  }
+  setTimeout(() => {
+    gifAmor.style.display = "none";
+  }, 5000);
 
-  for (let i = 0; i < 2; i++) {
-    setTimeout(crearFoto, i * 600);
-  }
-
-  for (let i = 0; i < 4; i++) {
-    setTimeout(crearLirio, i * 300);
-  }
+  for (let i = 0; i < 6; i++) setTimeout(crearCorazon, i * 200);
+  for (let i = 0; i < 3; i++) setTimeout(crearTexto, i * 400);
+  for (let i = 0; i < 2; i++) setTimeout(crearFoto, i * 600);
+  for (let i = 0; i < 4; i++) setTimeout(crearLirio, i * 300);
 });
 
-/* ===== EFECTOS ===== */
+/* EFECTOS */
 function crearCorazon() {
   const c = document.createElement("div");
   c.className = "caer";
@@ -82,9 +82,9 @@ function crearLirio() {
   setTimeout(() => l.remove(), 6000);
 }
 
-/* ===== CONTADOR CONTINUO ===== */
+/* CONTADOR CONTINUO */
 const contador = document.getElementById("contador");
-const inicio = new Date(2025, 9, 1, 0, 0, 0); // 1 oct 2025
+const inicio = new Date(2025, 9, 1, 0, 0, 0);
 
 function actualizarContador() {
   const ahora = new Date();
@@ -112,7 +112,7 @@ function actualizarContador() {
 setInterval(actualizarContador, 1000);
 actualizarContador();
 
-/* ===== CARTA ===== */
+/* CARTA */
 const btnCarta = document.getElementById("btnCarta");
 const carta = document.getElementById("carta");
 const cerrarCarta = document.getElementById("cerrarCarta");
