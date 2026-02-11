@@ -14,8 +14,30 @@
     <h1 class="title">💗 Feliz San Valentín 💗</h1>
     <p class="subtitle">Para ti, con todo mi amor</p>
 
-    <!-- CORAZÓN PRINCIPAL -->
+    <!-- CONTADOR -->
+    <p id="contador" class="contador"></p>
+
+    <!-- CORAZÓN -->
     <div class="heart"></div>
+
+    <!-- BOTÓN CARTA -->
+    <button id="openLetter" class="letter-btn">💌 Leer más</button>
+  </div>
+
+  <!-- CARTA -->
+  <div id="letter" class="letter">
+    <div class="letter-content">
+      <h2>Para ti, mi amor 💖</h2>
+      <p>
+        Gracias por llegar a mi vida y hacerla más bonita.<br><br>
+        Cada día contigo es un regalo, una sonrisa nueva y
+        una razón más para amar.<br><br>
+        Prometo cuidarte, respetarte y amarte
+        hoy, mañana y siempre.<br><br>
+        Con todo mi corazón ❤️
+      </p>
+      <button id="closeLetter">Cerrar</button>
+    </div>
   </div>
 
   <!-- MENSAJE FINAL -->
@@ -28,66 +50,75 @@
   </div>
 
   <script>
-    const images = [
+    /* ========= CONTADOR ========= */
+    const inicio = new Date(2024, 9, 1); // 1 octubre 2024 (mes 9)
+    const hoy = new Date();
+    const dias = Math.floor((hoy - inicio) / (1000 * 60 * 60 * 24));
+    document.getElementById("contador").textContent =
+      `Juntos desde hace ${dias} días 💞`;
+
+    /* ========= LLUVIA ========= */
+    const fotos = [
       "Imagenes/1.jpeg","Imagenes/2.jpeg","Imagenes/3.jpeg",
       "Imagenes/4.jpeg","Imagenes/5.jpeg","Imagenes/6.jpeg",
       "Imagenes/7.jpeg","Imagenes/8.jpeg","Imagenes/9.jpeg",
       "Imagenes/10.jpeg","Imagenes/11.jpeg"
     ];
 
-    const texts = [
-      "Te amo mucho ❤️",
-      "Danna mi amor 💕",
-      "Mi chichosa 🥰",
-      "Mi pollita hermosa 🐥❤️",
-      "Mi lirio 🌸💖"
+    const mensajes = [
+      "Te amo ❤️","Danna 💕","Mi chichosa 🥰",
+      "Mi pollita hermosa 💖","Mi lirio 🌸"
     ];
 
-    let lilyInterval = null;
-
-    function rain(type = "normal") {
+    function crearElemento(tipo="normal") {
       const el = document.createElement("div");
-      el.className = "fall";
+      el.className = "caer";
       el.style.left = Math.random() * 90 + "vw";
-      el.style.animationDuration = (8 + Math.random() * 3) + "s";
 
-      if (type === "lily") {
-        el.classList.add("emoji");
+      if (tipo === "sparkle") {
+        el.textContent = "✨";
+        el.style.fontSize = "18px";
+      } else if (tipo === "lirio") {
         el.textContent = "🌸";
+        el.style.fontSize = "26px";
       } else {
         const r = Math.random();
         if (r < 0.4) {
           const img = document.createElement("img");
-          img.src = images[Math.floor(Math.random() * images.length)];
-          img.className = "photo";
+          img.src = fotos[Math.floor(Math.random()*fotos.length)];
+          img.className = "foto";
           el.appendChild(img);
         } else if (r < 0.7) {
-          el.classList.add("text");
-          el.textContent = texts[Math.floor(Math.random() * texts.length)];
+          el.textContent = mensajes[Math.floor(Math.random()*mensajes.length)];
+          el.classList.add("texto");
         } else {
-          el.classList.add("emoji");
           el.textContent = "💗";
+          el.style.fontSize = "22px";
         }
       }
 
       document.body.appendChild(el);
-      setTimeout(() => el.remove(), 13000);
+      setTimeout(() => el.remove(), 12000);
     }
 
-    // Lluvia normal
-    setInterval(() => rain("normal"), 450);
+    setInterval(() => crearElemento(), 450);        // lluvia principal
+    setInterval(() => crearElemento("sparkle"), 2000); // brillitos suaves ✨
 
-    // Mostrar mensaje final + lirios
+    /* ========= MENSAJE FINAL ========= */
+    let lirios;
     setTimeout(() => {
-      document.getElementById("finalMessage").classList.add("show");
-      lilyInterval = setInterval(() => rain("lily"), 300);
+      finalMessage.classList.add("show");
+      lirios = setInterval(() => crearElemento("lirio"), 300);
     }, 10000);
 
-    // Cerrar mensaje y detener lirios
-    document.getElementById("finalMessage").addEventListener("click", () => {
-      document.getElementById("finalMessage").classList.remove("show");
-      clearInterval(lilyInterval);
+    finalMessage.addEventListener("click", () => {
+      finalMessage.classList.remove("show");
+      clearInterval(lirios);
     });
+
+    /* ========= CARTA ========= */
+    openLetter.onclick = () => letter.classList.add("show");
+    closeLetter.onclick = () => letter.classList.remove("show");
   </script>
 
 </body>
