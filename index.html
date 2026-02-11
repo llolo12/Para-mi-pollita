@@ -1,118 +1,19 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Feliz San Valentín ❤️</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Feliz San Valentín 💖</title>
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      touch-action: manipulation;
-      font-family: "Arial", sans-serif;
-    }
-
-    body {
-      background: #ffe6ef;
-      overflow: hidden;
-      height: 100vh;
-    }
-
-    h1 {
-      text-align: center;
-      margin-top: 20px;
-      color: #c2185b;
-      font-size: 24px;
-      z-index: 10;
-      position: relative;
-    }
-
-    .heart-container {
-      position: absolute;
-      top: 90px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 5;
-    }
-
-    .heart {
-      width: 120px;
-      height: 120px;
-      background: #ff2f6d;
-      position: relative;
-      transform: rotate(-45deg);
-      animation: pulse 1.5s infinite;
-    }
-
-    .heart::before,
-    .heart::after {
-      content: "";
-      width: 120px;
-      height: 120px;
-      background: #ff2f6d;
-      border-radius: 50%;
-      position: absolute;
-    }
-
-    .heart::before {
-      top: -60px;
-      left: 0;
-    }
-
-    .heart::after {
-      left: 60px;
-      top: 0;
-    }
-
-    @keyframes pulse {
-      0%, 100% { transform: scale(1) rotate(-45deg); }
-      50% { transform: scale(1.08) rotate(-45deg); }
-    }
-
-    .fall {
-      position: absolute;
-      top: -120px;
-      animation: fall linear forwards;
-      pointer-events: none;
-    }
-
-    .photo {
-      width: 110px;
-      border-radius: 16px;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-    }
-
-    .text {
-      background: rgba(255,255,255,0.85);
-      padding: 10px 16px;
-      border-radius: 20px;
-      color: #c2185b;
-      font-size: 16px;
-      font-weight: bold;
-    }
-
-    .small-heart {
-      font-size: 22px;
-    }
-
-    @keyframes fall {
-      from {
-        transform: translateY(0);
-        opacity: 1;
-      }
-      to {
-        transform: translateY(110vh);
-        opacity: 0.9;
-      }
-    }
-  </style>
+  <!-- CSS externo -->
+  <link rel="stylesheet" href="estilos.css">
 </head>
 
 <body>
 
-  <h1>💗 Feliz San Valentín 💗</h1>
+  <h1 id="title">💗 Feliz San Valentín 💗</h1>
+
+  <p id="subtitle">Toca el corazón ❤️</p>
 
   <div class="heart-container">
     <div class="heart"></div>
@@ -143,35 +44,34 @@
 
     function createRain() {
       const itemType = Math.random();
+      const element = document.createElement("div");
 
-      let element = document.createElement("div");
-      element.classList.add("fall");
-      element.style.left = Math.random() * 85 + "vw";
-      element.style.animationDuration = (6 + Math.random() * 3) + "s";
+      element.className = "fall";
+      element.style.left = Math.random() * 90 + "vw";
+      element.style.animationDuration = (7 + Math.random() * 3) + "s";
 
       if (itemType < 0.4) {
         const img = document.createElement("img");
         img.src = images[Math.floor(Math.random() * images.length)];
-        img.classList.add("photo");
+        img.className = "photo";
         element.appendChild(img);
-
-      } else if (itemType < 0.7) {
-        element.innerHTML = texts[Math.floor(Math.random() * texts.length)];
+      } 
+      else if (itemType < 0.7) {
         element.classList.add("text");
-
-      } else {
-        element.innerHTML = "💗";
+        element.textContent = texts[Math.floor(Math.random() * texts.length)];
+      } 
+      else {
         element.classList.add("small-heart");
+        element.textContent = "💗";
       }
 
       document.body.appendChild(element);
 
-      setTimeout(() => {
-        element.remove();
-      }, 10000);
+      setTimeout(() => element.remove(), 12000);
     }
 
-    setInterval(createRain, 500);
+    // lluvia continua (rápida en spawn, lenta al caer)
+    setInterval(createRain, 450);
   </script>
 
 </body>
