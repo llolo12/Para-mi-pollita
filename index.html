@@ -6,16 +6,27 @@
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
   <title>Feliz San Valentín 💖</title>
-
   <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
 
   <div class="container">
     <h1 class="title">💗 Feliz San Valentín 💗</h1>
-    <p class="subtitle">Para ti, con todo mi amor</p>
+    <p class="subtitle">Toca el corazón</p>
 
-    <div class="heart"></div>
+    <!-- CORAZÓN -->
+    <div class="heart" id="heart"></div>
+  </div>
+
+  <!-- MENSAJE FINAL -->
+  <div id="finalMessage" class="final-message">
+    <p>
+      Danna 💖<br><br>
+      Gracias por existir.<br>
+      Eres mi lugar seguro,<br>
+      mi alegría y mi amor.<br><br>
+      Te amo hoy, mañana y siempre 💕
+    </p>
   </div>
 
   <script>
@@ -60,6 +71,11 @@
     }
 
     setInterval(rain, 450);
+
+    // MENSAJE FINAL DESPUÉS DE 10s
+    setTimeout(() => {
+      document.getElementById("finalMessage").classList.add("show");
+    }, 10000);
   </script>
 
 </body>
