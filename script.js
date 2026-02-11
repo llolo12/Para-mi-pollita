@@ -1,7 +1,8 @@
-/* FECHA DE INICIO: 1 OCTUBRE 2025 */
+/* ===============================
+   CONTADOR (NO TOCAR)
+================================ */
 const fechaInicio = new Date(2025, 9, 1, 0, 0, 0);
 
-/* CONTADOR CONTINUO */
 function actualizarContador() {
     const ahora = new Date();
     let diff = ahora - fechaInicio;
@@ -20,31 +21,46 @@ function actualizarContador() {
 setInterval(actualizarContador, 1000);
 actualizarContador();
 
-/* CARTA */
-const btnAbrir = document.getElementById("btnAbrir");
-const btnCerrar = document.getElementById("btnCerrar");
-const contenidoCarta = document.getElementById("contenidoCarta");
-
-btnAbrir.addEventListener("click", () => {
-    contenidoCarta.classList.remove("cerrada");
-});
-
-btnCerrar.addEventListener("click", () => {
-    contenidoCarta.classList.add("cerrada");
-});
-
-/* GIF + LLUVIA */
+/* ===============================
+   CORAZÓN + GIF + LLUVIA
+================================ */
 const corazon = document.getElementById("corazon");
-const gifAmor = document.getElementById("gifAmor");
+const gif = document.getElementById("gifAmor");
 
-/* GIF estilo "mm" (funcional) */
 const gifURL = "https://media.tenor.com/7Yq0f6z5pVMAAAAC/love-heart.gif";
 
 corazon.addEventListener("click", () => {
-    gifAmor.src = gifURL;
-    gifAmor.style.display = "block";
+
+    /* MOSTRAR GIF */
+    gif.src = gifURL;
+    gif.style.display = "block";
+    gif.style.margin = "15px auto";
+    gif.style.width = "120px";
 
     setTimeout(() => {
-        gifAmor.style.display = "none";
+        gif.style.display = "none";
     }, 5000);
+
+    /* LLUVIA */
+    for (let i = 0; i < 8; i++) {
+        setTimeout(crearLluvia, i * 400);
+    }
 });
+
+function crearLluvia() {
+    const elemento = document.createElement("div");
+    elemento.textContent = Math.random() > 0.5 ? "❤️" : "Te amo 💕";
+
+    elemento.style.position = "fixed";
+    elemento.style.left = Math.random() * 90 + "vw";
+    elemento.style.top = "-30px";
+    elemento.style.fontSize = "20px";
+    elemento.style.animation = "caer 6s linear forwards";
+    elemento.style.zIndex = "999";
+
+    document.body.appendChild(elemento);
+
+    setTimeout(() => {
+        elemento.remove();
+    }, 6000);
+}
