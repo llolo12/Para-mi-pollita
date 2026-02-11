@@ -1,11 +1,9 @@
-/* RESET */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* CUERPO */
 body {
     font-family: Arial, sans-serif;
     background: #ffe6ee;
@@ -36,7 +34,7 @@ h2 {
 /* CORAZÓN */
 #corazon {
     font-size: 120px;
-    margin: 40px auto 20px;
+    margin: 40px auto 10px;
     cursor: pointer;
     animation: latir 1.2s infinite;
     user-select: none;
@@ -46,6 +44,14 @@ h2 {
     0% { transform: scale(1); }
     50% { transform: scale(1.15); }
     100% { transform: scale(1); }
+}
+
+/* GIF */
+#gifAmor {
+    width: 120px;
+    margin: 10px auto;
+    display: block;
+    pointer-events: none;
 }
 
 /* BOTÓN CARTA */
@@ -62,7 +68,7 @@ h2 {
 
 /* CARTA */
 .carta {
-    display: none; /* 🔴 CLAVE: CERRADA AL INICIO */
+    display: none;
     background: #ffd1dc;
     padding: 20px;
     margin: 15px;
@@ -119,6 +125,10 @@ h2 {
 @media (min-width: 768px) {
     #corazon {
         font-size: 160px;
+    }
+
+    #gifAmor {
+        width: 180px;
     }
 
     .foto {
