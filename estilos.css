@@ -1,80 +1,84 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
-    margin: 0;
-    height: 100vh;
-    background: linear-gradient(#ffd6e8, #ffeef5);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: #ffe4ef;
+  font-family: Arial, sans-serif;
+  touch-action: manipulation;
 }
 
-h1 {
-    color: #b0004b;
-    margin-bottom: 30px;
+#title {
+  margin-top: 35px;
+  text-align: center;
+  font-size: 22px;
+  color: #b0005a;
 }
 
-/* ❤️ CORAZÓN */
-#corazon {
-    position: relative;
-    width: 160px;
-    height: 160px;
-    background: #ff3366;
-    transform: rotate(-45deg);
-    animation: latido 1.2s infinite;
-    cursor: pointer;
+#heart-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 35px;
 }
 
-#corazon::before,
-#corazon::after {
-    content: "";
-    position: absolute;
-    width: 160px;
-    height: 160px;
-    background: #ff3366;
-    border-radius: 50%;
-}
-
-#corazon::before {
-    top: -80px;
-    left: 0;
-}
-
-#corazon::after {
-    left: 80px;
-    top: 0;
+#heart {
+  font-size: 85px;
+  cursor: pointer;
+  animation: latido 1.2s infinite;
 }
 
 @keyframes latido {
-    0%,100% { transform: rotate(-45deg) scale(1); }
-    50% { transform: rotate(-45deg) scale(1.1); }
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
 }
 
-/* 💕 COSAS QUE CAEN */
-.caer {
-    position: absolute;
-    animation: caer 3.5s linear forwards;
-    pointer-events: none;
+/* 🌧️ ELEMENTOS QUE CAEN */
+.foto, .texto, .corazon {
+  position: fixed;
+  top: -120px;
+  animation: caer 10s linear forwards;
 }
 
 @keyframes caer {
-    to {
-        transform: translateY(600px) rotate(360deg);
-        opacity: 0;
-    }
+  to {
+    transform: translateY(120vh);
+  }
 }
 
+/* 📸 FOTOS */
 .foto {
-    width: 80px;
-    border-radius: 12px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  width: 90px;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
 }
 
+/* 💬 TEXTOS */
 .texto {
-    background: rgba(255,255,255,0.85);
-    padding: 8px 14px;
-    border-radius: 20px;
-    color: #b0004b;
-    font-weight: bold;
+  background: rgba(255,255,255,0.85);
+  padding: 10px 14px;
+  border-radius: 20px;
+  font-size: 14px;
+  color: #b0005a;
+  white-space: nowrap;
+}
+
+/* 💗 CORAZONES */
+.corazon {
+  font-size: 26px;
+  opacity: 0.9;
+}
+
+/* 📱 Ajustes móvil */
+@media (max-width: 480px) {
+  #heart {
+    font-size: 75px;
+  }
+
+  .foto {
+    width: 80px;
+  }
 }
