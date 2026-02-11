@@ -1,38 +1,87 @@
 const corazon = document.getElementById("corazon");
-const btnCarta = document.getElementById("btnCarta");
-const carta = document.getElementById("carta");
-const contador = document.getElementById("contador");
 
-/* CONTADOR */
-const inicio = new Date("2024-10-01");
-setInterval(() => {
-    const hoy = new Date();
-    const dias = Math.floor((hoy - inicio) / (1000 * 60 * 60 * 24));
-    contador.innerText = `Juntos desde hace ${dias} días 💕`;
-}, 1000);
+const fotos = [
+  "Imagenes/1.jpeg",
+  "Imagenes/2.jpeg",
+  "Imagenes/3.jpeg",
+  "Imagenes/4.jpeg",
+  "Imagenes/5.jpeg",
+  "Imagenes/6.jpeg",
+  "Imagenes/7.jpeg",
+  "Imagenes/8.jpeg",
+  "Imagenes/9.jpeg",
+  "Imagenes/10.jpeg",
+  "Imagenes/11.jpeg",
+];
 
-/* LLUVIA AUTOMÁTICA */
-setInterval(() => {
-    crearCorazon();
-}, 400);
+const mensajes = [
+  "Te amo mucho ❤️",
+  "Danna mi amor 💕",
+  "Mi chichosa 🥰",
+  "Mi pollita hermosa 💖",
+  "Mi lirio 🌸"
+];
 
+/* CLICK EN EL CORAZÓN */
 corazon.addEventListener("click", () => {
-    for (let i = 0; i < 6; i++) crearCorazon();
+
+  /* corazones */
+  for (let i = 0; i < 6; i++) {
+    setTimeout(crearCorazon, i * 200);
+  }
+
+  /* mensajes */
+  for (let i = 0; i < 3; i++) {
+    setTimeout(crearTexto, i * 400);
+  }
+
+  /* fotos */
+  for (let i = 0; i < 2; i++) {
+    setTimeout(crearFoto, i * 600);
+  }
+
+  /* lirios */
+  for (let i = 0; i < 4; i++) {
+    setTimeout(crearLirio, i * 300);
+  }
 });
 
-/* CORAZONES */
+/* FUNCIONES */
+
 function crearCorazon() {
-    const c = document.createElement("div");
-    c.classList.add("caer");
-    c.innerText = "💗";
-    c.style.left = Math.random() * window.innerWidth + "px";
-    c.style.fontSize = "24px";
-    document.body.appendChild(c);
-    setTimeout(() => c.remove(), 5000);
+  const c = document.createElement("div");
+  c.className = "caer";
+  c.innerText = ["❤️","💖","💕","💗"][Math.floor(Math.random()*4)];
+  c.style.left = Math.random() * window.innerWidth + "px";
+  c.style.fontSize = "26px";
+  document.body.appendChild(c);
+  setTimeout(() => c.remove(), 6000);
 }
 
-/* CARTA */
-btnCarta.onclick = () => carta.style.display = "block";
-function cerrarCarta() {
-    carta.style.display = "none";
+function crearFoto() {
+  const f = document.createElement("img");
+  f.src = fotos[Math.floor(Math.random() * fotos.length)];
+  f.className = "caer foto";
+  f.style.left = Math.random() * (window.innerWidth - 80) + "px";
+  document.body.appendChild(f);
+  setTimeout(() => f.remove(), 6000);
+}
+
+function crearTexto() {
+  const t = document.createElement("div");
+  t.className = "caer texto";
+  t.innerText = mensajes[Math.floor(Math.random() * mensajes.length)];
+  t.style.left = Math.random() * (window.innerWidth - 120) + "px";
+  document.body.appendChild(t);
+  setTimeout(() => t.remove(), 6000);
+}
+
+function crearLirio() {
+  const l = document.createElement("div");
+  l.className = "caer";
+  l.innerText = "🌸";
+  l.style.left = Math.random() * window.innerWidth + "px";
+  l.style.fontSize = "24px";
+  document.body.appendChild(l);
+  setTimeout(() => l.remove(), 6000);
 }
