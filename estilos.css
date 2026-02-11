@@ -12,12 +12,12 @@ body {
   overflow: hidden;
 }
 
-/* CONTENEDOR */
+/* CONTENEDOR SUPERIOR */
 .container {
   position: relative;
   z-index: 10;
   text-align: center;
-  padding-top: 25px;
+  padding-top: 30px;
 }
 
 /* TEXTOS */
@@ -32,9 +32,12 @@ body {
   font-size: 16px;
 }
 
-/* CORAZÓN MÁS ABAJO */
+/* CORAZÓN JUSTO DEBAJO DE LOS TEXTOS */
 .heart {
-  margin: 45px auto 0; /* 🔥 lo baja */
+  margin-top: 28px;   /* 👈 AQUÍ se controla qué tan abajo queda */
+  margin-left: auto;
+  margin-right: auto;
+
   width: 85px;
   height: 85px;
   background: #ff2f6d;
