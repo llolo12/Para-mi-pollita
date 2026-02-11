@@ -2,36 +2,28 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
   <title>Feliz San Valentín 💖</title>
 
-  <!-- CSS externo -->
   <link rel="stylesheet" href="estilos.css">
 </head>
-
 <body>
 
-  <h1 id="title">💗 Feliz San Valentín 💗</h1>
+  <div class="container">
+    <h1 class="title">💗 Feliz San Valentín 💗</h1>
+    <p class="subtitle">Para ti, con todo mi amor</p>
 
-  <p id="subtitle">Toca el corazón ❤️</p>
-
-  <div class="heart-container">
     <div class="heart"></div>
   </div>
 
   <script>
     const images = [
-      "Imagenes/1.jpeg",
-      "Imagenes/2.jpeg",
-      "Imagenes/3.jpeg",
-      "Imagenes/4.jpeg",
-      "Imagenes/5.jpeg",
-      "Imagenes/6.jpeg",
-      "Imagenes/7.jpeg",
-      "Imagenes/8.jpeg",
-      "Imagenes/9.jpeg",
-      "Imagenes/10.jpeg",
-      "Imagenes/11.jpeg"
+      "Imagenes/1.jpeg","Imagenes/2.jpeg","Imagenes/3.jpeg",
+      "Imagenes/4.jpeg","Imagenes/5.jpeg","Imagenes/6.jpeg",
+      "Imagenes/7.jpeg","Imagenes/8.jpeg","Imagenes/9.jpeg",
+      "Imagenes/10.jpeg","Imagenes/11.jpeg"
     ];
 
     const texts = [
@@ -42,36 +34,32 @@
       "Mi lirio 🌸💖"
     ];
 
-    function createRain() {
-      const itemType = Math.random();
-      const element = document.createElement("div");
+    function rain() {
+      const el = document.createElement("div");
+      el.className = "fall";
+      el.style.left = Math.random() * 85 + "vw";
+      el.style.animationDuration = (8 + Math.random() * 3) + "s";
 
-      element.className = "fall";
-      element.style.left = Math.random() * 90 + "vw";
-      element.style.animationDuration = (7 + Math.random() * 3) + "s";
+      const r = Math.random();
 
-      if (itemType < 0.4) {
+      if (r < 0.4) {
         const img = document.createElement("img");
         img.src = images[Math.floor(Math.random() * images.length)];
         img.className = "photo";
-        element.appendChild(img);
-      } 
-      else if (itemType < 0.7) {
-        element.classList.add("text");
-        element.textContent = texts[Math.floor(Math.random() * texts.length)];
-      } 
-      else {
-        element.classList.add("small-heart");
-        element.textContent = "💗";
+        el.appendChild(img);
+      } else if (r < 0.7) {
+        el.classList.add("text");
+        el.textContent = texts[Math.floor(Math.random() * texts.length)];
+      } else {
+        el.classList.add("emoji");
+        el.textContent = "💗";
       }
 
-      document.body.appendChild(element);
-
-      setTimeout(() => element.remove(), 12000);
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), 13000);
     }
 
-    // lluvia continua (rápida en spawn, lenta al caer)
-    setInterval(createRain, 450);
+    setInterval(rain, 450);
   </script>
 
 </body>
