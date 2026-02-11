@@ -85,3 +85,17 @@ function crearLirio() {
   document.body.appendChild(l);
   setTimeout(() => l.remove(), 6000);
 }
+/* ===== CONTADOR DE DÍAS JUNTOS ===== */
+const contador = document.getElementById("contador");
+
+const inicio = new Date("2025-10-01"); // 1 de octubre de 2025
+
+function actualizarContador() {
+  const hoy = new Date();
+  const diferencia = hoy - inicio;
+  const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+  contador.innerText = `Juntos desde hace ${dias} días ❤️`;
+}
+
+actualizarContador();
+
