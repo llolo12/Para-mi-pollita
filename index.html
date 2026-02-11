@@ -1,202 +1,80 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-<!-- 🚫 BLOQUEO TOTAL DE ZOOM -->
-<meta name="viewport"
-      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-
-<title>Para Ti ❤️</title>
-
-<style>
-* {
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
-}
-
-html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    overflow: hidden;
-    touch-action: manipulation;
-    font-family: Arial, sans-serif;
-}
-
-body {
-    background: linear-gradient(#ffd6e8, #ffeef5);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 35px;
-}
-
-/* 💬 TEXTO SUPERIOR */
-h1 {
-    color: #b0004b;
-    font-size: 20px;
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-/* ❤️ CORAZÓN (TAMAÑO AJUSTADO) */
-#corazon {
-    position: relative;
-    width: 85px;
-    height: 85px;
-    background: #ff3366;
-    transform: rotate(-45deg);
-    animation: latido 1.2s infinite;
-    cursor: pointer;
-
-    /* 🚫 ZOOM DEFINITIVO */
-    touch-action: none;
-    user-select: none;
-    -webkit-user-select: none;
-    -webkit-touch-callout: none;
-}
-
-#corazon::before,
-#corazon::after {
-    content: "";
-    position: absolute;
-    width: 85px;
-    height: 85px;
-    background: #ff3366;
-    border-radius: 50%;
-}
-
-#corazon::before {
-    top: -42px;
-    left: 0;
-}
-
-#corazon::after {
-    left: 42px;
-    top: 0;
-}
-
-@keyframes latido {
-    0%,100% { transform: rotate(-45deg) scale(1); }
-    50% { transform: rotate(-45deg) scale(1.15); }
-}
-
-/* 🌧️ ELEMENTOS QUE CAEN (DESDE ARRIBA) */
-.caer {
-    position: absolute;
-    top: -100px;
-    animation: caer 8s linear forwards;
-    pointer-events: none;
-}
-
-@keyframes caer {
-    to {
-        transform: translateY(120vh);
-        opacity: 0;
-    }
-}
-
-/* 📸 FOTOS */
-.foto {
-    width: 70px;
-    border-radius: 12px;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.25);
-}
-
-/* 📝 TEXTOS */
-.texto {
-    background: rgba(255,255,255,0.95);
-    padding: 8px 14px;
-    border-radius: 20px;
-    color: #b0004b;
-    font-size: 14px;
-    font-weight: bold;
-    white-space: nowrap;
-}
-</style>
+  <title>Para Danna 💖</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<h1>Toca el corazón ❤️</h1>
-<div id="corazon"></div>
+  <h1 id="title">💗 Toca el corazón 💗</h1>
 
-<script>
-/* 📸 IMÁGENES */
-const fotos = [
-    "Imagenes/1.jpeg",
-    "Imagenes/2.jpeg",
-    "Imagenes/3.jpeg",
-    "Imagenes/4.jpeg",
-    "Imagenes/5.jpeg",
-    "Imagenes/6.jpeg",
-    "Imagenes/7.jpeg",
-    "Imagenes/8.jpeg",
-    "Imagenes/9.jpeg",
-    "Imagenes/10.jpeg",
-    "Imagenes/11.jpeg"
-];
+  <div id="heart-container">
+    <div id="heart">❤️</div>
+  </div>
 
-/* 💬 MENSAJES */
-const mensajes = [
-    "Te amo mucho ❤️",
-    "Danna mi amor 💕",
-    "Mi chichosa 🥰",
-    "Mi pollita hermosa 💖",
-    "Mi lirio 🌸"
-];
+  <script>
+    const fotos = [
+      "Imagenes/1.jpeg",
+      "Imagenes/2.jpeg",
+      "Imagenes/3.jpeg",
+      "Imagenes/4.jpeg",
+      "Imagenes/5.jpeg",
+      "Imagenes/6.jpeg",
+      "Imagenes/7.jpeg",
+      "Imagenes/8.jpeg",
+      "Imagenes/9.jpeg",
+      "Imagenes/10.jpeg",
+      "Imagenes/11.jpeg"
+    ];
 
-/* 🌧️ LLUVIA CONSTANTE (SPAM SEGUIDO + CAÍDA LENTA) */
-setInterval(() => {
-    crearCorazon();
-    if (Math.random() > 0.35) crearFoto();
-    if (Math.random() > 0.45) crearTexto();
-}, 450);
+    const textos = [
+      "Te amo mucho 💖",
+      "Danna mi amor 💕",
+      "Mi chichosa 🥰",
+      "Mi pollita hermosa 🐥💗",
+      "Mi lirio 🌸"
+    ];
 
-/* ❤️ TOQUE SIN ZOOM (CLAVE FINAL) */
-const corazon = document.getElementById("corazon");
+    function crearElemento() {
+      const tipo = Math.random();
 
-corazon.addEventListener("pointerdown", (e) => {
-    e.preventDefault();
-    e.stopPropagation();
+      let el;
 
-    for (let i = 0; i < 4; i++) crearCorazon();
-    for (let i = 0; i < 2; i++) crearFoto();
-    crearTexto();
-});
+      if (tipo < 0.4) {
+        el = document.createElement("img");
+        el.src = fotos[Math.floor(Math.random() * fotos.length)];
+        el.className = "foto";
+      } 
+      else if (tipo < 0.7) {
+        el = document.createElement("div");
+        el.className = "texto";
+        el.textContent = textos[Math.floor(Math.random() * textos.length)];
+      } 
+      else {
+        el = document.createElement("div");
+        el.className = "corazon";
+        el.textContent = "💗";
+      }
 
-/* 💖 CORAZONES */
-function crearCorazon() {
-    const c = document.createElement("div");
-    c.className = "caer";
-    c.innerText = ["❤️","💖","💕","💗"][Math.floor(Math.random()*4)];
-    c.style.left = Math.random() * window.innerWidth + "px";
-    c.style.fontSize = "26px";
-    document.body.appendChild(c);
-    setTimeout(() => c.remove(), 8000);
-}
+      el.style.left = Math.random() * 80 + "vw";
+      document.body.appendChild(el);
 
-/* 📸 FOTO */
-function crearFoto() {
-    const f = document.createElement("img");
-    f.src = fotos[Math.floor(Math.random()*fotos.length)];
-    f.className = "caer foto";
-    f.style.left = Math.random() * window.innerWidth + "px";
-    document.body.appendChild(f);
-    setTimeout(() => f.remove(), 8000);
-}
+      setTimeout(() => el.remove(), 12000);
+    }
 
-/* 📝 TEXTO */
-function crearTexto() {
-    const t = document.createElement("div");
-    t.className = "caer texto";
-    t.innerText = mensajes[Math.floor(Math.random()*mensajes.length)];
-    t.style.left = Math.random() * window.innerWidth + "px";
-    document.body.appendChild(t);
-    setTimeout(() => t.remove(), 8000);
-}
-</script>
+    // 🌧️ Lluvia continua (spam rápido)
+    setInterval(crearElemento, 350);
+
+    // 💓 Al tocar el corazón crea extra amor
+    document.getElementById("heart").addEventListener("click", () => {
+      for (let i = 0; i < 6; i++) crearElemento();
+    });
+  </script>
 
 </body>
 </html>
