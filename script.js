@@ -3,7 +3,7 @@ const fechaInicio = new Date(2025, 9, 1, 0, 0, 0);
 
 function actualizarContador() {
     const ahora = new Date();
-    let diff = ahora - fechaInicio;
+    const diff = ahora - fechaInicio;
 
     const segundos = Math.floor(diff / 1000) % 60;
     const minutos = Math.floor(diff / (1000 * 60)) % 60;
@@ -12,7 +12,7 @@ function actualizarContador() {
     const meses = Math.floor(diasTotales / 30);
     const dias = diasTotales % 30;
 
-    document.getElementById("contador").textContent =
+    document.getElementById("contador").innerText =
         `Juntos hace ${meses} meses, ${dias} días, ${horas}h ${minutos}m ${segundos}s ❤️`;
 }
 setInterval(actualizarContador, 1000);
@@ -20,9 +20,6 @@ actualizarContador();
 
 /* ===== CORAZÓN ===== */
 const corazon = document.getElementById("corazon");
-const gif = document.getElementById("gifAmor");
-
-const gifURL = "https://media.tenor.com/7Yq0f6z5pVMAAAAC/love-heart.gif";
 
 const fotos = [
   "Imagenes/1.jpeg",
@@ -38,40 +35,30 @@ const fotos = [
   "Imagenes/11.jpeg"
 ];
 
-
 const mensajes = [
-  "Te amo ❤️",
+  "Te amo mucho ❤️",
+  "Danna mi amor 💕",
+  "Mi chichosa 🥰",
   "Mi pollita hermosa 💖",
-  "Siempre contigo 💕",
-  "Mi amor eterno 🌸"
+  "Mi lirio 🌸"
 ];
 
 corazon.addEventListener("click", () => {
 
-    /* GIF */
-    gif.src = gifURL;
-    gif.style.display = "block";
-    setTimeout(() => gif.style.display = "none", 5000);
-
-    /* CORAZONES */
-    for (let i = 0; i < 5; i++) setTimeout(crearCorazon, i * 300);
-
-    /* FRASES */
-    for (let i = 0; i < 4; i++) setTimeout(crearTexto, i * 500);
-
-    /* FOTOS */
+    for (let i = 0; i < 5; i++) setTimeout(crearCorazon, i * 250);
+    for (let i = 0; i < 3; i++) setTimeout(crearTexto, i * 500);
     for (let i = 0; i < 3; i++) setTimeout(crearFoto, i * 700);
 });
 
 /* ===== LLUVIA ===== */
 function crearCorazon() {
-    crearElemento("❤️", "26px");
+    crearElemento(["❤️","💖","💕","💗"][Math.floor(Math.random()*4)], "26px");
 }
 
 function crearTexto() {
     const t = document.createElement("div");
     t.className = "caer texto";
-    t.textContent = mensajes[Math.floor(Math.random() * mensajes.length)];
+    t.innerText = mensajes[Math.floor(Math.random() * mensajes.length)];
     t.style.left = Math.random() * 80 + "vw";
     document.body.appendChild(t);
     setTimeout(() => t.remove(), 6000);
@@ -89,7 +76,7 @@ function crearFoto() {
 function crearElemento(texto, size) {
     const e = document.createElement("div");
     e.className = "caer";
-    e.textContent = texto;
+    e.innerText = texto;
     e.style.fontSize = size;
     e.style.left = Math.random() * 90 + "vw";
     document.body.appendChild(e);
@@ -102,4 +89,3 @@ document.getElementById("btnAbrir").onclick = () =>
 
 document.getElementById("btnCerrar").onclick = () =>
     document.getElementById("contenidoCarta").classList.add("cerrada");
-
