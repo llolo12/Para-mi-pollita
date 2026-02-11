@@ -1,39 +1,36 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Feliz San Valentín ❤️</title>
-  <link rel="stylesheet" href="estilos.css">
+    <meta charset="UTF-8">
+    <title>Feliz San Valentín ❤️</title>
+
+    <!-- CLAVE PARA EL CELULAR -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
 
-  <h1>Feliz San Valentín</h1>
-  <h2>Para ti, con todo mi amor 💖</h2>
+    <h1>💗 Feliz San Valentín 💗</h1>
+    <h2>Para ti, con todo mi amor</h2>
+    <p id="contador"></p>
 
-  <p id="contador"></p>
+    <!-- CORAZÓN PRINCIPAL -->
+    <div id="corazon">❤️</div>
 
-  <div id="corazon">❤️</div>
+    <!-- BOTÓN CARTA -->
+    <button id="btnCarta">💌 Leer más</button>
 
-  <p class="indicacion">Feliz San Valentín</p>
-
-  <button id="btnCarta">Leer más 💌</button>
-
-  <div id="carta">
-    <div class="contenido-carta">
-      <h3>Para ti ❤️</h3>
-      <p>
-        Gracias por estar en mi vida mi pollita hermosa.  
-        Te amo con todo mi corazón y siempre lo haré.
-      </p>
-      <button id="cerrarCarta">Cerrar</button>
+    <!-- CARTA -->
+    <div id="carta">
+        <p>
+            Gracias por estar en mi vida mi pollita hermosa 💖<br><br>
+            Cada día contigo es un regalo.<br><br>
+            Te amo con todo mi corazón ❤️
+        </p>
+        <button onclick="cerrarCarta()">Cerrar</button>
     </div>
-  </div>
 
-  <div id="mensajeFinal">
-    Gracias por estar en mi vida mi pollita hermosa, te amo 💖
-  </div>
-
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
