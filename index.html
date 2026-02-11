@@ -21,11 +21,9 @@
   <!-- MENSAJE FINAL -->
   <div id="finalMessage" class="final-message">
     <p>
-      Danna 💖<br><br>
-      Gracias por existir.<br>
-      Eres mi lugar seguro,<br>
-      mi alegría y mi amor.<br><br>
-      Te amo hoy, mañana y siempre 💕
+      Gracias por estar en mi vida,<br>
+      mi pollita hermosa 💖<br><br>
+      Te amo 💕
     </p>
   </div>
 
@@ -45,41 +43,50 @@
       "Mi lirio 🌸💖"
     ];
 
-    function rain() {
+    let lilyInterval = null;
+
+    function rain(type = "normal") {
       const el = document.createElement("div");
       el.className = "fall";
-      el.style.left = Math.random() * 85 + "vw";
+      el.style.left = Math.random() * 90 + "vw";
       el.style.animationDuration = (8 + Math.random() * 3) + "s";
 
-      const r = Math.random();
-
-      if (r < 0.4) {
-        const img = document.createElement("img");
-        img.src = images[Math.floor(Math.random() * images.length)];
-        img.className = "photo";
-        el.appendChild(img);
-      } else if (r < 0.7) {
-        el.classList.add("text");
-        el.textContent = texts[Math.floor(Math.random() * texts.length)];
-      } else {
+      if (type === "lily") {
         el.classList.add("emoji");
-        el.textContent = "💗";
+        el.textContent = "🌸";
+      } else {
+        const r = Math.random();
+        if (r < 0.4) {
+          const img = document.createElement("img");
+          img.src = images[Math.floor(Math.random() * images.length)];
+          img.className = "photo";
+          el.appendChild(img);
+        } else if (r < 0.7) {
+          el.classList.add("text");
+          el.textContent = texts[Math.floor(Math.random() * texts.length)];
+        } else {
+          el.classList.add("emoji");
+          el.textContent = "💗";
+        }
       }
 
       document.body.appendChild(el);
       setTimeout(() => el.remove(), 13000);
     }
 
-    setInterval(rain, 450);
+    // Lluvia normal
+    setInterval(() => rain("normal"), 450);
 
-    // MENSAJE FINAL A LOS 10s
+    // Mostrar mensaje final + lirios
     setTimeout(() => {
       document.getElementById("finalMessage").classList.add("show");
+      lilyInterval = setInterval(() => rain("lily"), 300);
     }, 10000);
 
-    // CERRAR MENSAJE AL TOCAR
+    // Cerrar mensaje y detener lirios
     document.getElementById("finalMessage").addEventListener("click", () => {
       document.getElementById("finalMessage").classList.remove("show");
+      clearInterval(lilyInterval);
     });
   </script>
 
