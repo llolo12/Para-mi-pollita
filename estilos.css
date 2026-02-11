@@ -1,141 +1,59 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 body {
+    background: linear-gradient(#ffdde1, #ee9ca7);
     font-family: Arial, sans-serif;
-    background: #ffe6ee;
     text-align: center;
-    overflow-x: hidden;
+    padding: 20px;
 }
 
-/* TÍTULOS */
 h1 {
-    margin-top: 20px;
-    color: #d81b60;
-    font-size: 32px;
+    color: #b3005e;
 }
 
-h2 {
-    color: #e91e63;
-    font-size: 20px;
-    margin-top: 5px;
-}
-
-/* CONTADOR */
 #contador {
-    margin-top: 8px;
-    font-size: 16px;
-    color: #880e4f;
+    font-size: 1.2em;
+    margin-bottom: 15px;
 }
 
-/* CORAZÓN */
 #corazon {
-    font-size: 120px;
-    margin: 40px auto 10px;
+    font-size: 60px;
     cursor: pointer;
-    animation: latir 1.2s infinite;
-    user-select: none;
+    animation: latido 1.2s infinite;
 }
 
-@keyframes latir {
+@keyframes latido {
     0% { transform: scale(1); }
-    50% { transform: scale(1.15); }
+    50% { transform: scale(1.2); }
     100% { transform: scale(1); }
 }
 
-/* GIF */
 #gifAmor {
     width: 120px;
     margin: 10px auto;
-    display: block;
-    pointer-events: none;
-}
-
-/* BOTÓN CARTA */
-.boton-carta {
-    margin: 10px auto 20px;
-    padding: 8px 16px;
-    font-size: 15px;
-    border: none;
-    border-radius: 10px;
-    background: #fff;
-    color: #d81b60;
-    cursor: pointer;
-}
-
-/* CARTA */
-.carta {
     display: none;
-    background: #ffd1dc;
-    padding: 20px;
-    margin: 15px;
-    border-radius: 15px;
-    text-align: left;
-    line-height: 1.6;
-    animation: aparecer 0.4s ease;
-}
-
-@keyframes aparecer {
-    from { opacity: 0; transform: translateY(15px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.cerrar {
-    margin-top: 15px;
-    padding: 6px 12px;
-    border: none;
-    background: #fff;
-    border-radius: 8px;
-    cursor: pointer;
-}
-
-/* LLUVIA */
-.caer {
-    position: fixed;
-    top: -80px;
-    animation: caer 6s linear forwards;
     pointer-events: none;
-    z-index: 9999;
 }
 
-@keyframes caer {
-    to {
-        transform: translateY(110vh);
-        opacity: 0;
-    }
+.carta {
+    margin-top: 20px;
 }
 
-/* FOTOS */
-.foto {
-    width: 70px;
-    border-radius: 12px;
+#contenidoCarta {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 10px;
 }
 
-/* TEXTO */
-.texto {
-    font-size: 16px;
-    font-weight: bold;
-    color: #c2185b;
+.cerrada {
+    display: none;
 }
 
-/* RESPONSIVE */
-@media (min-width: 768px) {
-    #corazon {
-        font-size: 160px;
-    }
-
-    #gifAmor {
-        width: 180px;
-    }
-
-    .foto {
-        width: 110px;
-    }
-
-    h1 {
-        font-size: 38px;
-    }
+button {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 8px;
+    background: #ff4d88;
+    color: white;
+    font-size: 1em;
+    cursor: pointer;
 }
