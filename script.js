@@ -99,3 +99,21 @@ function actualizarContador() {
 
 actualizarContador();
 
+document.addEventListener("DOMContentLoaded", () => {
+
+  const btnCarta = document.getElementById("btnCarta");
+  const carta = document.getElementById("carta");
+  const cerrarCarta = document.getElementById("cerrarCarta");
+
+  if (btnCarta && carta && cerrarCarta) {
+    btnCarta.addEventListener("click", () => {
+      carta.style.display = "block";
+    });
+
+    cerrarCarta.addEventListener("click", () => {
+      carta.style.display = "none";
+    });
+  }
+
+});
+
