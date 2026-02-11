@@ -1,4 +1,4 @@
-/* RESET BÁSICO */
+/* RESET */
 * {
     margin: 0;
     padding: 0;
@@ -7,13 +7,13 @@
 
 /* CUERPO */
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: Arial, sans-serif;
     background: #ffe6ee;
     text-align: center;
     overflow-x: hidden;
 }
 
-/* ENCABEZADO */
+/* TÍTULOS */
 h1 {
     margin-top: 20px;
     color: #d81b60;
@@ -26,13 +26,14 @@ h2 {
     margin-top: 5px;
 }
 
-.contador {
+/* CONTADOR */
+#contador {
     margin-top: 8px;
     font-size: 16px;
     color: #880e4f;
 }
 
-/* CORAZÓN PRINCIPAL */
+/* CORAZÓN */
 #corazon {
     font-size: 120px;
     margin: 40px auto 20px;
@@ -47,7 +48,7 @@ h2 {
     100% { transform: scale(1); }
 }
 
-/* BOTÓN LEER MÁS */
+/* BOTÓN CARTA */
 .boton-carta {
     margin: 10px auto 20px;
     padding: 8px 16px;
@@ -61,14 +62,14 @@ h2 {
 
 /* CARTA */
 .carta {
-    display: none;
+    display: none; /* 🔴 CLAVE: CERRADA AL INICIO */
     background: #ffd1dc;
     padding: 20px;
     margin: 15px;
     border-radius: 15px;
     text-align: left;
     line-height: 1.6;
-    animation: aparecer 0.5s ease;
+    animation: aparecer 0.4s ease;
 }
 
 @keyframes aparecer {
@@ -85,36 +86,36 @@ h2 {
     cursor: pointer;
 }
 
+/* LLUVIA */
 .caer {
-  position: fixed;
-  top: -80px;
-  animation: caer 6s linear forwards;
-  pointer-events: none;
-  z-index: 9999;
+    position: fixed;
+    top: -80px;
+    animation: caer 6s linear forwards;
+    pointer-events: none;
+    z-index: 9999;
 }
 
 @keyframes caer {
-  to {
-    transform: translateY(110vh);
-    opacity: 0;
-  }
+    to {
+        transform: translateY(110vh);
+        opacity: 0;
+    }
 }
 
 /* FOTOS */
 .foto {
-  width: 70px;
-  height: auto;
-  border-radius: 12px;
+    width: 70px;
+    border-radius: 12px;
 }
 
 /* TEXTO */
 .texto {
-  font-size: 16px;
-  font-weight: bold;
-  color: #c2185b;
+    font-size: 16px;
+    font-weight: bold;
+    color: #c2185b;
 }
 
-/* RESPONSIVE PRO */
+/* RESPONSIVE */
 @media (min-width: 768px) {
     #corazon {
         font-size: 160px;
@@ -128,4 +129,3 @@ h2 {
         font-size: 38px;
     }
 }
-
