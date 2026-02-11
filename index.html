@@ -2,124 +2,38 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-  <title>Feliz San Valentín 💖</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Feliz San Valentín ❤️</title>
   <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
 
-  <div class="container">
-    <h1 class="title">💗 Feliz San Valentín 💗</h1>
-    <p class="subtitle">Para ti, con todo mi amor</p>
+  <h1>Feliz San Valentín</h1>
+  <h2>Para ti, con todo mi amor 💖</h2>
 
-    <!-- CONTADOR -->
-    <p id="contador" class="contador"></p>
+  <p id="contador"></p>
 
-    <!-- CORAZÓN -->
-    <div class="heart"></div>
+  <div id="corazon">❤️</div>
 
-    <!-- BOTÓN CARTA -->
-    <button id="openLetter" class="letter-btn">💌 Leer más</button>
-  </div>
+  <p class="indicacion">Feliz San Valentín</p>
 
-  <!-- CARTA -->
-  <div id="letter" class="letter">
-    <div class="letter-content">
-      <h2>Para ti, mi amor 💖</h2>
+  <button id="btnCarta">Leer más 💌</button>
+
+  <div id="carta">
+    <div class="contenido-carta">
+      <h3>Para ti ❤️</h3>
       <p>
-        Gracias por llegar a mi vida y hacerla más bonita.<br><br>
-        Cada día contigo es un regalo, una sonrisa nueva y
-        una razón más para amar.<br><br>
-        Prometo cuidarte, respetarte y amarte
-        hoy, mañana y siempre.<br><br>
-        Con todo mi corazón ❤️
+        Gracias por estar en mi vida mi pollita hermosa.  
+        Te amo con todo mi corazón y siempre lo haré.
       </p>
-      <button id="closeLetter">Cerrar</button>
+      <button id="cerrarCarta">Cerrar</button>
     </div>
   </div>
 
-  <!-- MENSAJE FINAL -->
-  <div id="finalMessage" class="final-message">
-    <p>
-      Gracias por estar en mi vida,<br>
-      mi pollita hermosa 💖<br><br>
-      Te amo 💕
-    </p>
+  <div id="mensajeFinal">
+    Gracias por estar en mi vida mi pollita hermosa, te amo 💖
   </div>
 
-  <script>
-    /* ========= CONTADOR ========= */
-    const inicio = new Date(2024, 9, 1); // 1 octubre 2024 (mes 9)
-    const hoy = new Date();
-    const dias = Math.floor((hoy - inicio) / (1000 * 60 * 60 * 24));
-    document.getElementById("contador").textContent =
-      `Juntos desde hace ${dias} días 💞`;
-
-    /* ========= LLUVIA ========= */
-    const fotos = [
-      "Imagenes/1.jpeg","Imagenes/2.jpeg","Imagenes/3.jpeg",
-      "Imagenes/4.jpeg","Imagenes/5.jpeg","Imagenes/6.jpeg",
-      "Imagenes/7.jpeg","Imagenes/8.jpeg","Imagenes/9.jpeg",
-      "Imagenes/10.jpeg","Imagenes/11.jpeg"
-    ];
-
-    const mensajes = [
-      "Te amo ❤️","Danna 💕","Mi chichosa 🥰",
-      "Mi pollita hermosa 💖","Mi lirio 🌸"
-    ];
-
-    function crearElemento(tipo="normal") {
-      const el = document.createElement("div");
-      el.className = "caer";
-      el.style.left = Math.random() * 90 + "vw";
-
-      if (tipo === "sparkle") {
-        el.textContent = "✨";
-        el.style.fontSize = "18px";
-      } else if (tipo === "lirio") {
-        el.textContent = "🌸";
-        el.style.fontSize = "26px";
-      } else {
-        const r = Math.random();
-        if (r < 0.4) {
-          const img = document.createElement("img");
-          img.src = fotos[Math.floor(Math.random()*fotos.length)];
-          img.className = "foto";
-          el.appendChild(img);
-        } else if (r < 0.7) {
-          el.textContent = mensajes[Math.floor(Math.random()*mensajes.length)];
-          el.classList.add("texto");
-        } else {
-          el.textContent = "💗";
-          el.style.fontSize = "22px";
-        }
-      }
-
-      document.body.appendChild(el);
-      setTimeout(() => el.remove(), 12000);
-    }
-
-    setInterval(() => crearElemento(), 450);        // lluvia principal
-    setInterval(() => crearElemento("sparkle"), 2000); // brillitos suaves ✨
-
-    /* ========= MENSAJE FINAL ========= */
-    let lirios;
-    setTimeout(() => {
-      finalMessage.classList.add("show");
-      lirios = setInterval(() => crearElemento("lirio"), 300);
-    }, 10000);
-
-    finalMessage.addEventListener("click", () => {
-      finalMessage.classList.remove("show");
-      clearInterval(lirios);
-    });
-
-    /* ========= CARTA ========= */
-    openLetter.onclick = () => letter.classList.add("show");
-    closeLetter.onclick = () => letter.classList.remove("show");
-  </script>
-
+  <script src="script.js"></script>
 </body>
 </html>
