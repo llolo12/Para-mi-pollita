@@ -12,7 +12,7 @@ body {
   overflow: hidden;
 }
 
-/* CONTENEDOR SUPERIOR */
+/* CONTENEDOR */
 .container {
   position: relative;
   z-index: 10;
@@ -32,12 +32,11 @@ body {
   font-size: 16px;
 }
 
-/* CORAZÓN JUSTO DEBAJO DE LOS TEXTOS */
+/* CORAZÓN */
 .heart {
-  margin-top: 28px;   /* 👈 AQUÍ se controla qué tan abajo queda */
+  margin-top: 28px;
   margin-left: auto;
   margin-right: auto;
-
   width: 85px;
   height: 85px;
   background: #ff2f6d;
@@ -80,7 +79,7 @@ body {
 
 @keyframes fall {
   from { transform: translateY(0); opacity: 1; }
-  to { transform: translateY(120vh); opacity: 0.9; }
+  to { transform: translateY(120vh); opacity: 0.95; }
 }
 
 /* FOTOS */
@@ -100,16 +99,16 @@ body {
   font-size: 16px;
 }
 
-/* CORAZONES */
+/* EMOJIS (CORAZONES Y LIRIOS) */
 .emoji {
-  font-size: 22px;
+  font-size: 26px;
 }
 
 /* MENSAJE FINAL */
 .final-message {
   position: fixed;
   inset: 0;
-  background: rgba(255, 214, 229, 0.96);
+  background: rgba(255, 214, 229, 0.97);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -128,6 +127,6 @@ body {
 
 .final-message p {
   color: #c2185b;
-  font-size: 20px;
+  font-size: 21px;
   line-height: 1.5;
 }
