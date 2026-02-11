@@ -2,7 +2,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  touch-action: manipulation;
   font-family: Arial, sans-serif;
 }
 
@@ -14,36 +13,31 @@ body {
 
 /* CONTENEDOR */
 .container {
-  position: relative;
-  z-index: 10;
   text-align: center;
   padding-top: 30px;
+  position: relative;
+  z-index: 10;
 }
 
 /* TEXTOS */
-.title {
-  color: #c2185b;
-  font-size: 26px;
-}
-
-.subtitle {
-  margin-top: 6px;
-  color: #e91e63;
-  font-size: 16px;
+.title { color: #c2185b; font-size: 26px; }
+.subtitle { color: #e91e63; margin-top: 6px; }
+.contador {
+  margin-top: 10px;
+  font-size: 15px;
+  color: #ad1457;
+  font-weight: bold;
 }
 
 /* CORAZÓN */
 .heart {
-  margin-top: 28px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 28px auto;
   width: 85px;
   height: 85px;
   background: #ff2f6d;
   transform: rotate(-45deg);
   animation: pulse 1.4s infinite;
 }
-
 .heart::before,
 .heart::after {
   content: "";
@@ -53,80 +47,91 @@ body {
   border-radius: 50%;
   position: absolute;
 }
-
-.heart::before {
-  top: -42px;
-  left: 0;
-}
-
-.heart::after {
-  left: 42px;
-  top: 0;
-}
+.heart::before { top: -42px; }
+.heart::after { left: 42px; }
 
 @keyframes pulse {
   0%,100% { transform: scale(1) rotate(-45deg); }
   50% { transform: scale(1.1) rotate(-45deg); }
 }
 
+/* BOTÓN CARTA */
+.letter-btn {
+  background: #ff5f8d;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 20px;
+  font-size: 15px;
+}
+
 /* LLUVIA */
-.fall {
+.caer {
   position: absolute;
-  top: -160px;
-  pointer-events: none;
+  top: -120px;
   animation: fall linear forwards;
 }
-
 @keyframes fall {
-  from { transform: translateY(0); opacity: 1; }
-  to { transform: translateY(120vh); opacity: 0.95; }
+  to { transform: translateY(120vh); opacity: 0.9; }
 }
-
-/* FOTOS */
-.photo {
-  width: 110px;
+.foto {
+  width: 100px;
+  border-radius: 16px;
+}
+.texto {
+  background: white;
+  padding: 8px 14px;
   border-radius: 18px;
-  box-shadow: 0 10px 18px rgba(0,0,0,0.25);
-}
-
-/* FRASES */
-.text {
-  background: rgba(255,255,255,0.9);
-  padding: 10px 16px;
-  border-radius: 20px;
   color: #c2185b;
-  font-weight: bold;
-  font-size: 16px;
-}
-
-/* EMOJIS (CORAZONES Y LIRIOS) */
-.emoji {
-  font-size: 26px;
 }
 
 /* MENSAJE FINAL */
 .final-message {
   position: fixed;
   inset: 0;
-  background: rgba(255, 214, 229, 0.97);
+  background: rgba(255,214,229,.97);
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
-  padding: 30px;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 1s ease;
+  transition: 1s;
   z-index: 20;
 }
-
 .final-message.show {
   opacity: 1;
   pointer-events: auto;
 }
-
 .final-message p {
-  color: #c2185b;
   font-size: 21px;
-  line-height: 1.5;
+  color: #c2185b;
+  text-align: center;
+}
+
+/* CARTA */
+.letter {
+  position: fixed;
+  inset: 0;
+  background: rgba(255,230,240,.98);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 30;
+}
+.letter.show { display: flex; }
+
+.letter-content {
+  background: white;
+  padding: 25px;
+  border-radius: 20px;
+  max-width: 300px;
+  text-align: center;
+}
+.letter-content button {
+  margin-top: 15px;
+  background: #ff2f6d;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 16px;
 }
