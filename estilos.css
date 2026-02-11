@@ -1,69 +1,131 @@
+/* RESET BÁSICO */
 * {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
+/* CUERPO */
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #ffe6ef;
+    font-family: 'Arial', sans-serif;
+    background: #ffe6ee;
     text-align: center;
     overflow-x: hidden;
 }
 
-/* TEXTOS */
+/* ENCABEZADO */
 h1 {
     margin-top: 20px;
     color: #d81b60;
+    font-size: 32px;
 }
 
 h2 {
-    margin: 5px 0;
-    color: #c2185b;
+    color: #e91e63;
+    font-size: 20px;
+    margin-top: 5px;
 }
 
-#contador {
-    font-size: 18px;
-    margin-bottom: 20px;
+.contador {
+    margin-top: 8px;
+    font-size: 16px;
+    color: #880e4f;
 }
 
 /* CORAZÓN PRINCIPAL */
 #corazon {
-    font-size: 80px;          /* MÁS PEQUEÑO */
-    margin: 20px auto 10px;   /* MÁS ABAJO */
+    font-size: 120px;
+    margin: 40px auto 20px;
     cursor: pointer;
+    animation: latir 1.2s infinite;
     user-select: none;
-    touch-action: manipulation; /* 🚫 ZOOM */
 }
 
-/* BOTÓN */
-#btnCarta {
-    padding: 8px 14px;
-    border-radius: 10px;
+@keyframes latir {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+    100% { transform: scale(1); }
+}
+
+/* BOTÓN LEER MÁS */
+.boton-carta {
+    margin: 10px auto 20px;
+    padding: 8px 16px;
+    font-size: 15px;
     border: none;
-    font-size: 14px;
-    background: white;
+    border-radius: 10px;
+    background: #fff;
+    color: #d81b60;
+    cursor: pointer;
 }
 
 /* CARTA */
-#carta {
+.carta {
     display: none;
-    position: fixed;
-    inset: 0;
-    background: #ffe6ef;
+    background: #ffd1dc;
     padding: 20px;
-    overflow-y: auto;
+    margin: 15px;
+    border-radius: 15px;
+    text-align: left;
+    line-height: 1.6;
+    animation: aparecer 0.5s ease;
 }
 
-/* LLUVIA */
+@keyframes aparecer {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.cerrar {
+    margin-top: 15px;
+    padding: 6px 12px;
+    border: none;
+    background: #fff;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* ELEMENTOS QUE CAEN */
 .caer {
     position: fixed;
     top: -50px;
-    animation: caer 5s linear forwards;
+    animation: caer 3.5s linear forwards;
+    z-index: 10;
 }
 
 @keyframes caer {
     to {
-        transform: translateY(110vh);
+        transform: translateY(100vh);
         opacity: 0;
+    }
+}
+
+/* FOTOS DE LA LLUVIA (SOLUCIÓN DEL PROBLEMA) */
+.foto {
+    width: 70px;
+    max-width: 70px;
+    height: auto;
+    border-radius: 12px;
+}
+
+/* TEXTO DE LA LLUVIA */
+.texto {
+    font-size: 16px;
+    color: #c2185b;
+    font-weight: bold;
+}
+
+/* RESPONSIVE PRO */
+@media (min-width: 768px) {
+    #corazon {
+        font-size: 160px;
+    }
+
+    .foto {
+        width: 110px;
+    }
+
+    h1 {
+        font-size: 38px;
     }
 }
