@@ -57,3 +57,10 @@ button {
     font-size: 1em;
     cursor: pointer;
 }
+
+@keyframes caer {
+    to {
+        transform: translateY(110vh);
+        opacity: 0;
+    }
+}
