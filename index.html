@@ -12,10 +12,10 @@
 
   <div class="container">
     <h1 class="title">💗 Feliz San Valentín 💗</h1>
-    <p class="subtitle">Toca el corazón</p>
+    <p class="subtitle">Para ti, con todo mi amor</p>
 
-    <!-- CORAZÓN -->
-    <div class="heart" id="heart"></div>
+    <!-- CORAZÓN PRINCIPAL -->
+    <div class="heart"></div>
   </div>
 
   <!-- MENSAJE FINAL -->
@@ -72,10 +72,15 @@
 
     setInterval(rain, 450);
 
-    // MENSAJE FINAL DESPUÉS DE 10s
+    // MENSAJE FINAL A LOS 10s
     setTimeout(() => {
       document.getElementById("finalMessage").classList.add("show");
     }, 10000);
+
+    // CERRAR MENSAJE AL TOCAR
+    document.getElementById("finalMessage").addEventListener("click", () => {
+      document.getElementById("finalMessage").classList.remove("show");
+    });
   </script>
 
 </body>
