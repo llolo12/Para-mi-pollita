@@ -3,36 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <title>Feliz San Valentín ❤️</title>
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
 
-    <h1>💗 Feliz San Valentín 💗</h1>
-    <h2>Para ti, con todo mi amor</h2>
+    <h1>❤️ Feliz San Valentín ❤️</h1>
 
     <p id="contador"></p>
 
-    <!-- CORAZÓN PRINCIPAL -->
-    <div id="corazon">❤️</div>
+    <!-- CORAZÓN -->
+    <div id="corazon">💖</div>
 
-    <!-- GIF (APARECE AL TOCAR EL CORAZÓN) -->
-    <img id="gifAmor" style="display:none;">
-
-    <!-- BOTÓN CARTA -->
-    <button id="btnCarta" class="boton-carta">💌 Leer más</button>
+    <!-- GIF -->
+    <img id="gifAmor" alt="gif amor">
 
     <!-- CARTA -->
-    <div id="carta" class="carta">
-        <p>
-            Gracias por estar en mi vida mi pollita hermosa 💖<br><br>
-            Cada día contigo es un regalo.<br><br>
-            Te amo con todo mi corazón ❤️
-        </p>
-        <button id="cerrarCarta" class="cerrar">Cerrar</button>
+    <div class="carta">
+        <button id="btnAbrir">Leer más</button>
+
+        <div id="contenidoCarta" class="cerrada">
+            <p>
+                Mi amor, gracias por cada momento, cada sonrisa y cada día juntos.
+                Te amo más de lo que las palabras pueden decir ❤️
+            </p>
+            <button id="btnCerrar">Cerrar</button>
+        </div>
     </div>
 
     <script src="script.js"></script>
