@@ -12,12 +12,12 @@ body {
   overflow: hidden;
 }
 
-/* CONTENEDOR CENTRAL */
+/* CONTENEDOR */
 .container {
   position: relative;
   z-index: 10;
   text-align: center;
-  padding-top: 30px;
+  padding-top: 25px;
 }
 
 /* TEXTOS */
@@ -32,9 +32,9 @@ body {
   font-size: 16px;
 }
 
-/* CORAZÓN (MÁS PEQUEÑO Y ABAJO) */
+/* CORAZÓN MÁS ABAJO */
 .heart {
-  margin: 25px auto 0;
+  margin: 45px auto 0; /* 🔥 lo baja */
   width: 85px;
   height: 85px;
   background: #ff2f6d;
@@ -100,4 +100,31 @@ body {
 /* CORAZONES */
 .emoji {
   font-size: 22px;
+}
+
+/* MENSAJE FINAL */
+.final-message {
+  position: fixed;
+  inset: 0;
+  background: rgba(255, 214, 229, 0.96);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 30px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1s ease;
+  z-index: 20;
+}
+
+.final-message.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.final-message p {
+  color: #c2185b;
+  font-size: 20px;
+  line-height: 1.5;
 }
