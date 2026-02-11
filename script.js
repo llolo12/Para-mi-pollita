@@ -1,6 +1,4 @@
-/* ===============================
-   CONTADOR (NO TOCAR)
-================================ */
+/* ===== CONTADOR ===== */
 const fechaInicio = new Date(2025, 9, 1, 0, 0, 0);
 
 function actualizarContador() {
@@ -17,50 +15,82 @@ function actualizarContador() {
     document.getElementById("contador").textContent =
         `Juntos hace ${meses} meses, ${dias} días, ${horas}h ${minutos}m ${segundos}s ❤️`;
 }
-
 setInterval(actualizarContador, 1000);
 actualizarContador();
 
-/* ===============================
-   CORAZÓN + GIF + LLUVIA
-================================ */
+/* ===== CORAZÓN ===== */
 const corazon = document.getElementById("corazon");
 const gif = document.getElementById("gifAmor");
 
 const gifURL = "https://media.tenor.com/7Yq0f6z5pVMAAAAC/love-heart.gif";
 
+const fotos = [
+  "Imagenes/1.jpeg",
+  "Imagenes/2.jpeg",
+  "Imagenes/3.jpeg",
+  "Imagenes/4.jpeg"
+];
+
+const mensajes = [
+  "Te amo ❤️",
+  "Mi pollita hermosa 💖",
+  "Siempre contigo 💕",
+  "Mi amor eterno 🌸"
+];
+
 corazon.addEventListener("click", () => {
 
-    /* MOSTRAR GIF */
+    /* GIF */
     gif.src = gifURL;
     gif.style.display = "block";
-    gif.style.margin = "15px auto";
-    gif.style.width = "120px";
+    setTimeout(() => gif.style.display = "none", 5000);
 
-    setTimeout(() => {
-        gif.style.display = "none";
-    }, 5000);
+    /* CORAZONES */
+    for (let i = 0; i < 5; i++) setTimeout(crearCorazon, i * 300);
 
-    /* LLUVIA */
-    for (let i = 0; i < 8; i++) {
-        setTimeout(crearLluvia, i * 400);
-    }
+    /* FRASES */
+    for (let i = 0; i < 4; i++) setTimeout(crearTexto, i * 500);
+
+    /* FOTOS */
+    for (let i = 0; i < 3; i++) setTimeout(crearFoto, i * 700);
 });
 
-function crearLluvia() {
-    const elemento = document.createElement("div");
-    elemento.textContent = Math.random() > 0.5 ? "❤️" : "Te amo 💕";
-
-    elemento.style.position = "fixed";
-    elemento.style.left = Math.random() * 90 + "vw";
-    elemento.style.top = "-30px";
-    elemento.style.fontSize = "20px";
-    elemento.style.animation = "caer 6s linear forwards";
-    elemento.style.zIndex = "999";
-
-    document.body.appendChild(elemento);
-
-    setTimeout(() => {
-        elemento.remove();
-    }, 6000);
+/* ===== LLUVIA ===== */
+function crearCorazon() {
+    crearElemento("❤️", "26px");
 }
+
+function crearTexto() {
+    const t = document.createElement("div");
+    t.className = "caer texto";
+    t.textContent = mensajes[Math.floor(Math.random() * mensajes.length)];
+    t.style.left = Math.random() * 80 + "vw";
+    document.body.appendChild(t);
+    setTimeout(() => t.remove(), 6000);
+}
+
+function crearFoto() {
+    const f = document.createElement("img");
+    f.src = fotos[Math.floor(Math.random() * fotos.length)];
+    f.className = "caer foto";
+    f.style.left = Math.random() * 80 + "vw";
+    document.body.appendChild(f);
+    setTimeout(() => f.remove(), 6000);
+}
+
+function crearElemento(texto, size) {
+    const e = document.createElement("div");
+    e.className = "caer";
+    e.textContent = texto;
+    e.style.fontSize = size;
+    e.style.left = Math.random() * 90 + "vw";
+    document.body.appendChild(e);
+    setTimeout(() => e.remove(), 6000);
+}
+
+/* ===== CARTA ===== */
+document.getElementById("btnAbrir").onclick = () =>
+    document.getElementById("contenidoCarta").classList.remove("cerrada");
+
+document.getElementById("btnCerrar").onclick = () =>
+    document.getElementById("contenidoCarta").classList.add("cerrada");
