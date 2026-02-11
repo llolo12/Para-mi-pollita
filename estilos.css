@@ -1,3 +1,9 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     background: linear-gradient(#ffdde1, #ee9ca7);
     font-family: Arial, sans-serif;
@@ -8,41 +14,53 @@ body {
 
 h1 {
     color: #b3005e;
+    font-size: 32px;
+}
+
+h2 {
+    color: #c2185b;
+    font-size: 18px;
+    margin-bottom: 8px;
 }
 
 #contador {
-    font-size: 1.2em;
+    font-size: 15px;
     margin-bottom: 15px;
+    color: #880e4f;
 }
 
+/* CORAZÓN */
 #corazon {
-    font-size: 70px;
+    font-size: 80px;
+    margin: 25px auto;
     cursor: pointer;
     animation: latido 1.2s infinite;
+    user-select: none;
 }
 
 @keyframes latido {
     0% { transform: scale(1); }
-    50% { transform: scale(1.2); }
+    50% { transform: scale(1.15); }
     100% { transform: scale(1); }
 }
 
-#gifAmor {
-    width: 130px;
-    display: none;
-    margin: 15px auto;
-    pointer-events: none;
-}
-
+/* CARTA */
 .carta {
     margin-top: 20px;
 }
 
 #contenidoCarta {
-    background: white;
-    padding: 15px;
-    border-radius: 12px;
+    background: #fff;
+    padding: 18px;
+    border-radius: 14px;
     margin-top: 10px;
+    line-height: 1.6;
+    animation: aparecer 0.4s ease;
+}
+
+@keyframes aparecer {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .cerrada {
@@ -52,20 +70,20 @@ h1 {
 button {
     padding: 8px 15px;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
     background: #ff4d88;
     color: white;
-    font-size: 1em;
+    font-size: 14px;
     cursor: pointer;
 }
 
 /* LLUVIA */
 .caer {
     position: fixed;
-    top: -50px;
+    top: -60px;
     animation: caer 6s linear forwards;
-    z-index: 9999;
     pointer-events: none;
+    z-index: 9999;
 }
 
 @keyframes caer {
@@ -75,13 +93,21 @@ button {
     }
 }
 
+/* FOTOS */
 .foto {
     width: 70px;
     border-radius: 10px;
 }
 
+/* TEXTO */
 .texto {
     font-size: 16px;
     font-weight: bold;
     color: #c2185b;
+}
+
+/* RESPONSIVE */
+@media (min-width: 768px) {
+    #corazon { font-size: 120px; }
+    .foto { width: 110px; }
 }
