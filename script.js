@@ -1,5 +1,6 @@
 const corazon = document.getElementById("corazon");
 
+/* ===== IMÁGENES ===== */
 const fotos = [
   "Imagenes/1.jpeg",
   "Imagenes/2.jpeg",
@@ -22,32 +23,27 @@ const mensajes = [
   "Mi lirio 🌸"
 ];
 
-/* CLICK EN EL CORAZÓN */
+/* ===== CLICK CORAZÓN ===== */
 corazon.addEventListener("click", () => {
 
-  /* corazones */
   for (let i = 0; i < 6; i++) {
     setTimeout(crearCorazon, i * 200);
   }
 
-  /* mensajes */
   for (let i = 0; i < 3; i++) {
     setTimeout(crearTexto, i * 400);
   }
 
-  /* fotos */
   for (let i = 0; i < 2; i++) {
     setTimeout(crearFoto, i * 600);
   }
 
-  /* lirios */
   for (let i = 0; i < 4; i++) {
     setTimeout(crearLirio, i * 300);
   }
 });
 
-/* FUNCIONES */
-
+/* ===== EFECTOS ===== */
 function crearCorazon() {
   const c = document.createElement("div");
   c.className = "caer";
@@ -85,35 +81,48 @@ function crearLirio() {
   document.body.appendChild(l);
   setTimeout(() => l.remove(), 6000);
 }
-/* ===== CONTADOR DE DÍAS JUNTOS ===== */
-const contador = document.getElementById("contador");
 
-const inicio = new Date("2025-10-01"); // 1 de octubre de 2025
+/* ===== CONTADOR CONTINUO ===== */
+const contador = document.getElementById("contador");
+const inicio = new Date(2025, 9, 1, 0, 0, 0); // 1 oct 2025
 
 function actualizarContador() {
-  const hoy = new Date();
-  const diferencia = hoy - inicio;
-  const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
-  contador.innerText = `Juntos desde hace ${dias} días ❤️`;
+  const ahora = new Date();
+  let diff = Math.floor((ahora - inicio) / 1000);
+
+  const segundos = diff % 60;
+  diff = Math.floor(diff / 60);
+
+  const minutos = diff % 60;
+  diff = Math.floor(diff / 60);
+
+  const horas = diff % 24;
+  diff = Math.floor(diff / 24);
+
+  const dias = diff % 30;
+  const meses = Math.floor(diff / 30);
+
+  contador.innerHTML = `
+    Juntos desde ❤️<br>
+    ${meses} meses ${dias} días<br>
+    ${horas}h ${minutos}m ${segundos}s
+  `;
 }
 
+setInterval(actualizarContador, 1000);
 actualizarContador();
 
-document.addEventListener("DOMContentLoaded", () => {
+/* ===== CARTA ===== */
+const btnCarta = document.getElementById("btnCarta");
+const carta = document.getElementById("carta");
+const cerrarCarta = document.getElementById("cerrarCarta");
 
-  const btnCarta = document.getElementById("btnCarta");
-  const carta = document.getElementById("carta");
-  const cerrarCarta = document.getElementById("cerrarCarta");
+carta.style.display = "none";
 
-  if (btnCarta && carta && cerrarCarta) {
-    btnCarta.addEventListener("click", () => {
-      carta.style.display = "block";
-    });
-
-    cerrarCarta.addEventListener("click", () => {
-      carta.style.display = "none";
-    });
-  }
-
+btnCarta.addEventListener("click", () => {
+  carta.style.display = "block";
 });
 
+cerrarCarta.addEventListener("click", () => {
+  carta.style.display = "none";
+});
