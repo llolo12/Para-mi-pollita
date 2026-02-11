@@ -3,44 +3,41 @@
   padding: 0;
   box-sizing: border-box;
   touch-action: manipulation;
-  font-family: "Arial", sans-serif;
+  font-family: Arial, sans-serif;
 }
 
 body {
-  background: #ffe6ef;
+  background: linear-gradient(#ffe6ef, #ffd6e5);
   height: 100vh;
   overflow: hidden;
 }
 
-/* TEXTO */
-#title {
+/* CONTENEDOR CENTRAL */
+.container {
+  position: relative;
+  z-index: 10;
   text-align: center;
-  margin-top: 18px;
-  color: #c2185b;
-  font-size: 24px;
+  padding-top: 30px;
 }
 
-#subtitle {
-  text-align: center;
-  color: #e91e63;
+/* TEXTOS */
+.title {
+  color: #c2185b;
+  font-size: 26px;
+}
+
+.subtitle {
   margin-top: 6px;
+  color: #e91e63;
   font-size: 16px;
 }
 
-/* CORAZÓN */
-.heart-container {
-  display: flex;
-  justify-content: center;
-  margin-top: 30px;
-  z-index: 5;
-  position: relative;
-}
-
+/* CORAZÓN (MÁS PEQUEÑO Y ABAJO) */
 .heart {
-  width: 95px;
-  height: 95px;
+  margin: 25px auto 0;
+  width: 85px;
+  height: 85px;
   background: #ff2f6d;
-  position: relative;
   transform: rotate(-45deg);
   animation: pulse 1.4s infinite;
 }
@@ -48,39 +45,39 @@ body {
 .heart::before,
 .heart::after {
   content: "";
-  width: 95px;
-  height: 95px;
+  width: 85px;
+  height: 85px;
   background: #ff2f6d;
   border-radius: 50%;
   position: absolute;
 }
 
 .heart::before {
-  top: -47px;
+  top: -42px;
   left: 0;
 }
 
 .heart::after {
-  left: 47px;
+  left: 42px;
   top: 0;
 }
 
 @keyframes pulse {
   0%,100% { transform: scale(1) rotate(-45deg); }
-  50% { transform: scale(1.08) rotate(-45deg); }
+  50% { transform: scale(1.1) rotate(-45deg); }
 }
 
 /* LLUVIA */
 .fall {
   position: absolute;
-  top: -140px;
-  animation: fall linear forwards;
+  top: -160px;
   pointer-events: none;
+  animation: fall linear forwards;
 }
 
 @keyframes fall {
   from { transform: translateY(0); opacity: 1; }
-  to { transform: translateY(115vh); opacity: 0.95; }
+  to { transform: translateY(120vh); opacity: 0.9; }
 }
 
 /* FOTOS */
@@ -92,16 +89,15 @@ body {
 
 /* FRASES */
 .text {
-  background: rgba(255,255,255,0.88);
+  background: rgba(255,255,255,0.9);
   padding: 10px 16px;
   border-radius: 20px;
   color: #c2185b;
   font-weight: bold;
   font-size: 16px;
-  text-align: center;
 }
 
-/* CORAZONES PEQUEÑOS */
-.small-heart {
+/* CORAZONES */
+.emoji {
   font-size: 22px;
 }
