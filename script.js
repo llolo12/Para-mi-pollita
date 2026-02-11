@@ -28,8 +28,16 @@ const fotos = [
   "Imagenes/1.jpeg",
   "Imagenes/2.jpeg",
   "Imagenes/3.jpeg",
-  "Imagenes/4.jpeg"
+  "Imagenes/4.jpeg",
+  "Imagenes/5.jpeg",
+  "Imagenes/6.jpeg",
+  "Imagenes/7.jpeg",
+  "Imagenes/8.jpeg",
+  "Imagenes/9.jpeg",
+  "Imagenes/10.jpeg",
+  "Imagenes/11.jpeg"
 ];
+
 
 const mensajes = [
   "Te amo ❤️",
@@ -94,3 +102,4 @@ document.getElementById("btnAbrir").onclick = () =>
 
 document.getElementById("btnCerrar").onclick = () =>
     document.getElementById("contenidoCarta").classList.add("cerrada");
+
